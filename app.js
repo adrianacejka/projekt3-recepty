@@ -17,3 +17,49 @@ recept-hodnoceni, recept-nazev, recept-popis.
 
 6) Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
 */
+
+let seznam = document.getElementById('recepty');
+
+
+vygenerujSeznam();
+
+function vygenerujSeznam() {  
+
+    recepty.forEach(function(recept, index) {
+
+        console.log(recept.nadpis);
+
+        let polozkaRecept = document.createElement('div');polozkaRecept.className = 'recept';
+
+
+        let receptObrazek = document.createElement('div');
+        receptObrazek.className = 'recept-obrazek';
+        let img = document.createElement('img');
+        img.src = recept.img;
+        receptObrazek.appendChild(img);
+
+        let receptNazev = document.createElement('div');
+        receptNazev.className = 'recept-info';
+        let titulek = document.createElement('h3');
+        titulek.innerHTML = recept.nadpis;
+        receptNazev.appendChild(titulek);
+
+        polozkaRecept.appendChild(receptObrazek);
+        polozkaRecept.appendChild(receptNazev);
+
+        seznam.appendChild(polozkaRecept);
+        
+    });
+
+    
+
+    
+}
+
+// function vytvorPolozkuRecept(recept) {
+//
+// }
+
+
+
+
