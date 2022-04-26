@@ -1,8 +1,8 @@
 /*
 Co je za úkol v tomto projektu:
 
-    1) DONE -Do prvku s id="recepty" vygeneruj z dat seznam všech receptů z naší "databáze".
-    HTML vzor, jak vygenerovaný recept vypadá, je zakomentovaný v index.html.
+1) DONE -Do prvku s id="recepty" vygeneruj z dat seznam všech receptů z naší "databáze".
+HTML vzor, jak vygenerovaný recept vypadá, je zakomentovaný v index.html.
 
 2) ??? - jak vyrobit, aby bylo vyhledáno pokud obsahuje pouze část názvu
 Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
@@ -19,8 +19,8 @@ Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví de
 Doplň patričné údaje receptu do HTML prvků s ID recept-foto, recept-kategorie,
 recept-hodnoceni, recept-nazev, recept-popis.
 
-    6) Snad ok
-    Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
+6) Snad ok
+Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
 */
 
 let seznam = document.getElementById('recepty');
@@ -63,7 +63,8 @@ function vytvorPolozkuRecept(recept) {
 }
 
 
-// ------ dopsat funkci po kliknutí na polozku rceptu v seznamu ---
+// ------ dopsat funkci po kliknutí na polozku rceptu v seznamu ----
+
 /* 
 function priKliknuti() {
     
@@ -87,17 +88,10 @@ let searchInput = document.getElementById('hledat');
 
 function najdiRecept() {  // funkce pripnuta na tlacitku hledej
 
-    let hodnota = searchInput.value;
+    let hodnota = searchInput.value.toLowerCase();
     console.log(hodnota);
 
-    let nalezene = recepty.filter(function(recept) {
-        if (recept.nadpis.toLowerCase() < hodnota.toLowerCase()) {
-            return true;     
-        } else {
-            return false;
-        };
-    });
-
+    let nalezene = recepty.filter(recept => recept.nadpis.toLowerCase().includes(hodnota)) // pole nalezených
     console.log(nalezene);
 
 };
