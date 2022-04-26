@@ -87,6 +87,11 @@ let searchButton = document.querySelector('#search');
 searchButton.addEventListener('click', najdiRecept);
 
 let searchInput = document.getElementById('hledat');
+searchInput.onkeydown = function(e) {
+    if (e.key == "Enter") {
+      najdiRecept();
+    };
+};
 
 function najdiRecept() {  // funkce pripnuta na tlacitku hledej
 
