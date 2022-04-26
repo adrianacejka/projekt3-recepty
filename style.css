@@ -247,3 +247,7 @@ h1 {
 .recept-detail h1 {
     color: #feada6;
 }
+
+.logo {
+    cursor: pointer;
+}

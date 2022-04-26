@@ -24,6 +24,8 @@ Poslední vybraný recept ulož do Local Storage, aby se při novém otevření 
 */
 
 let seznam = document.getElementById('recepty');
+let logo = document.querySelector('.logo');
+logo.onclick = vygenerujSeznam;
 
 vygenerujSeznam();
 
@@ -39,8 +41,8 @@ function vytvorPolozkuRecept(el) {
     let polozkaRecept = document.createElement('div');
     polozkaRecept.className = 'recept';
 
-    // dopsat funkci po kliknutí na polozku rceptu v seznamu
-    polozkaRecept.addEventListener('click', function() {
+    
+    polozkaRecept.addEventListener('click', function() { // dopsat funkci po kliknutí na polozku rceptu v seznamu
         console.log('klik'); 
     });
 
@@ -80,29 +82,35 @@ function priKliknuti() {
 
 // hledání receptu ----------------- pole.filter() ?
 
+
 let searchButton = document.querySelector('#search');
 searchButton.addEventListener('click', najdiRecept);
 
 let searchInput = document.getElementById('hledat');
 
 function najdiRecept() {  // funkce pripnuta na tlacitku hledej
-    
+
     let hodnota = searchInput.value.toLowerCase();
     console.log(hodnota);
 
     let nalezene = recepty.filter(recept => recept.nadpis.toLowerCase().includes(hodnota)) // pole nalezených
     console.log(nalezene);
+    
+    vymazSeznam();
 
     nalezene.forEach((nalezenyRecept) => {
         console.log(nalezenyRecept.nadpis);
         vytvorPolozkuRecept(nalezenyRecept);
     });
 
-    
 };
 
-
-
+function vymazSeznam() {
+    let polozkyRecept = document.querySelectorAll('.recept');
+    polozkyRecept.forEach(function(polozkaRecept) {
+        seznam.removeChild(polozkaRecept);
+    }); 
+};
 
 
 
