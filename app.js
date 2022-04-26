@@ -1,21 +1,26 @@
 /*
 Co je za úkol v tomto projektu:
 
-1) Do prvku s id="recepty" vygeneruj z dat seznam všech receptů z naší "databáze".
-HTML vzor, jak vygenerovaný recept vypadá, je zakomentovaný v index.html.
+    1) DONE -Do prvku s id="recepty" vygeneruj z dat seznam všech receptů z naší "databáze".
+    HTML vzor, jak vygenerovaný recept vypadá, je zakomentovaný v index.html.
 
-2) Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
+2) ??? - jak vyrobit, aby bylo vyhledáno pokud obsahuje pouze část názvu
+Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
 by se měl seznam receptů vyfiltrovat podle hledaného slova.
 
-3) Doplň filtrovanání receptů podle kategorie.
+3) ??? - použiju filter()? 
+Doplň filtrovanání receptů podle kategorie.
 
-4) Doplň řazení receptů podle hodnocení.
+4) ??? - použít sort()?
+Doplň řazení receptů podle hodnocení.
 
-5) Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
+5) Skrz index a dataset?
+Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
 Doplň patričné údaje receptu do HTML prvků s ID recept-foto, recept-kategorie,
 recept-hodnoceni, recept-nazev, recept-popis.
 
-6) Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
+    6) Snad ok
+    Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
 */
 
 let seznam = document.getElementById('recepty');
@@ -31,9 +36,10 @@ function vygenerujSeznam() {
 
 function vytvorPolozkuRecept(recept) {
 
-    let polozkaRecept = document.createElement('div'); // tohle je jedna vygenerovaná položka v seznamu
+    let polozkaRecept = document.createElement('div');
     polozkaRecept.className = 'recept';
     
+    // dopsat funkci po kliknutí na polozku rceptu v seznamu
     polozkaRecept.addEventListener('click', function() {
         console.log('klik');
     });
@@ -57,10 +63,12 @@ function vytvorPolozkuRecept(recept) {
 }
 
 
+// ------ dopsat funkci po kliknutí na polozku rceptu v seznamu ---
 /* 
 function priKliknuti() {
-    console.log('klik');
-    // vypsat hodnoty do prvků pres textContent do recept-detail
+    
+    // vypsat hodnoty do prvků pres textContent do recept-detail -------------------
+
     let receptFoto = document.getElementById('recept-foto');
     receptFoto.src = recept.img;
     let receptKategorie = document.getElementById('recept-kategorie');
@@ -70,26 +78,45 @@ function priKliknuti() {
 
 } */
 
+// hledání receptu ----------------- pole.filter() ?
 
 let searchButton = document.querySelector('#search');
 searchButton.addEventListener('click', najdiRecept);
 
 let searchInput = document.getElementById('hledat');
 
-function najdiRecept() {
+function najdiRecept() {  // funkce pripnuta na tlacitku hledej
+
     let hodnota = searchInput.value;
     console.log(hodnota);
+
+    let nalezene = recepty.filter(function(recept) {
+        if (recept.nadpis.toLowerCase() < hodnota.toLowerCase()) {
+            return true;     
+        } else {
+            return false;
+        };
+    });
+
+    console.log(nalezene);
+
 };
 
+
+
+
+
+
+
+// ----------------------------------------------
 
 // function seradOdNejvic() {
 
 // }
 
+// ----------------------------------------------
+
 // function seradOdNejmin() {
 
 // }
 
-// 
-
-// 
