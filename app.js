@@ -19,29 +19,31 @@ recept-hodnoceni, recept-nazev, recept-popis.
 */
 
 let seznam = document.getElementById('recepty');
-
-
 vygenerujSeznam();
 
+
 function vygenerujSeznam() {  
-
-    recepty.forEach(function(recept) {
-
+    recepty.forEach((recept) => {
         console.log(recept.nadpis);
-
         vytvorPolozkuRecept(recept);
-        
     });
 }
 
 function vytvorPolozkuRecept(recept) {
-    let polozkaRecept = document.createElement('div');polozkaRecept.className = 'recept';
 
+    let polozkaRecept = document.createElement('div'); // tohle je jedna vygenerovaná položka v seznamu
+    polozkaRecept.className = 'recept';
+    
+    polozkaRecept.addEventListener('click', function() {
+        console.log('klik');
+    });
+    
+    
     let receptObrazek = document.createElement('div');
     receptObrazek.className = 'recept-obrazek';
-    let img = document.createElement('img');
-    img.src = recept.img;
-    receptObrazek.appendChild(img);
+    let imgItem = document.createElement('img');
+    imgItem.src = recept.img;
+    receptObrazek.appendChild(imgItem);
 
     let receptNazev = document.createElement('div');
     receptNazev.className = 'recept-info';
@@ -51,11 +53,43 @@ function vytvorPolozkuRecept(recept) {
 
     polozkaRecept.appendChild(receptObrazek);
     polozkaRecept.appendChild(receptNazev);
-
     seznam.appendChild(polozkaRecept);
-
 }
 
 
+/* 
+function priKliknuti() {
+    console.log('klik');
+    // vypsat hodnoty do prvků pres textContent do recept-detail
+    let receptFoto = document.getElementById('recept-foto');
+    receptFoto.src = recept.img;
+    let receptKategorie = document.getElementById('recept-kategorie');
+    let receptHodnoceni = document.getElementById('recept-hodnoceni');
+    let receptNazev = document.getElementById('recept-nazev');
+    let receptPopis = document.getElementById('recept-popis');
+
+} */
 
 
+let searchButton = document.querySelector('#search');
+searchButton.addEventListener('click', najdiRecept);
+
+let searchInput = document.getElementById('hledat');
+
+function najdiRecept() {
+    let hodnota = searchInput.value;
+    console.log(hodnota);
+};
+
+
+// function seradOdNejvic() {
+
+// }
+
+// function seradOdNejmin() {
+
+// }
+
+// 
+
+// 
