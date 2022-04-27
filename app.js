@@ -16,7 +16,7 @@ Doplň filtrovanání receptů podle kategorie.
 4) ??? - použít pole.sort()?
 Doplň řazení receptů podle hodnocení.
 
-5) Skrz index a locl storage
+5) ??? - Skrz index a dataset
 Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
 Doplň patričné údaje receptu do HTML prvků s ID recept-foto, recept-kategorie,
 recept-hodnoceni, recept-nazev, recept-popis.
@@ -68,24 +68,35 @@ function vytvorPolozkuRecept(el) {
 }
 
 
+
 // funkce při kliknutí na položku receptu v seznamu -----------
 
 function priKliknuti() {
 
-    detail.style.display = 'block';
+    let hodnota = this.innerText;
+    console.log(hodnota);
 
-    let index = this.dataset.index;
+    let index = recepty.findIndex(recept => recept.nadpis === hodnota);
     console.log(index);
+
     
+
+    // detail.style.display = 'block';
+
+    // let index = this.dataset.index;
+    // console.log(index);
+
+    // let receptFoto = document.querySelector('.recept-detail-obrazek');
+    // let foto = document.createElement('img');
+    // foto.id = 'recept-foto';
+    // foto.src = recepty[index].img;
+    // receptFoto.appendChild(foto);
+
     // receptFoto.src = recepty[index].img;
-
-    // let receptFoto = document.getElementById('recept-foto');
-
     // let receptKategorie = document.getElementById('recept-kategorie');
     // let receptHodnoceni = document.getElementById('recept-hodnoceni');
     // let receptNazev = document.getElementById('recept-nazev');
     // let receptPopis = document.getElementById('recept-popis');
-
 
 };
 
@@ -122,7 +133,7 @@ searchInput.onkeydown = function(e) {
 
 
 
-// funkce pripnuta na tlacitku hledej -----------------
+// funkce pripnuta na tlacitku "Hledat" -----------------
 
 function najdiRecept() {  
 
@@ -140,6 +151,7 @@ function najdiRecept() {
     });
 
 };
+
 
 function vymazSeznam() {
     let polozkyRecept = document.querySelectorAll('.recept');
