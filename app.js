@@ -65,6 +65,8 @@ function vytvorPolozkuRecept(el) {
     polozkaRecept.appendChild(receptObrazek);
     polozkaRecept.appendChild(receptNazev);
     seznam.appendChild(polozkaRecept);
+
+    priradIndex();
 }
 
 
@@ -83,14 +85,14 @@ function priKliknuti() {
 
 };
 
-let index = 0;
+function priradIndex() {
+    let index = 0;
+    let poleElem = document.querySelectorAll('div.recept');
 
-let poleElem = document.querySelectorAll('div.recept');
-
-poleElem.forEach(function(divRecpt, idx) {
-    divRecpt.dataset.index = index++;
-}); 
-
+    poleElem.forEach(function(divRecpt, idx) {
+        divRecpt.dataset.index = index++;
+    }); 
+}
 
 
 // function najdiIndex {
