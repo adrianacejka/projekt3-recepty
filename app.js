@@ -46,9 +46,7 @@ function vytvorPolozkuRecept(el) {
     polozkaRecept.className = 'recept';
 
     // dopsat funkci po kliknutí na polozku rceptu v seznamu
-    polozkaRecept.addEventListener('click', function() { 
-        console.log('klik'); 
-    });
+    polozkaRecept.addEventListener('click', priKliknuti);
 
     let receptObrazek = document.createElement('div');
     receptObrazek.className = 'recept-obrazek';
@@ -70,18 +68,24 @@ function vytvorPolozkuRecept(el) {
 }
 
 
-// funkce po kliknutí na polozku receptu v seznamu -----------
+// funkce při kliknutí na položku receptu v seznamu -----------
 
- 
 function priKliknuti() {
 
-    let receptFoto = document.getElementById('recept-foto');
-    receptFoto.src = recept.img;
+    detail.style.display = 'block';
 
-    let receptKategorie = document.getElementById('recept-kategorie');
-    let receptHodnoceni = document.getElementById('recept-hodnoceni');
-    let receptNazev = document.getElementById('recept-nazev');
-    let receptPopis = document.getElementById('recept-popis');
+    let index = this.dataset.index;
+    console.log(index);
+    
+    // receptFoto.src = recepty[index].img;
+
+    // let receptFoto = document.getElementById('recept-foto');
+
+    // let receptKategorie = document.getElementById('recept-kategorie');
+    // let receptHodnoceni = document.getElementById('recept-hodnoceni');
+    // let receptNazev = document.getElementById('recept-nazev');
+    // let receptPopis = document.getElementById('recept-popis');
+
 
 };
 
@@ -89,10 +93,13 @@ function priradIndex() {
     let index = 0;
     let poleElem = document.querySelectorAll('div.recept');
 
-    poleElem.forEach(function(divRecpt, idx) {
+    poleElem.forEach(function(divRecpt) {
         divRecpt.dataset.index = index++;
     }); 
+
 }
+
+
 
 
 // function najdiIndex {
