@@ -16,7 +16,7 @@ Doplň filtrovanání receptů podle kategorie.
 4) ??? - použít pole.sort()?
 Doplň řazení receptů podle hodnocení.
 
-5) ??? - Skrz index a dataset
+5) DONE - Skrz index
 Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
 Doplň patričné údaje receptu do HTML prvků s ID recept-foto, recept-kategorie,
 recept-hodnoceni, recept-nazev, recept-popis.
@@ -64,9 +64,8 @@ function vytvorPolozkuRecept(el) {
     polozkaRecept.appendChild(receptNazev);
     seznam.appendChild(polozkaRecept);
 
-    priradIndex();
+    
 }
-
 
 
 // funkce při kliknutí na položku receptu v seznamu -----------
@@ -79,43 +78,24 @@ function priKliknuti() {
     let index = recepty.findIndex(recept => recept.nadpis === hodnota);
     console.log(index);
 
+    detail.style.display = 'block';
+
+    let receptFoto = document.getElementById('recept-foto');
+    receptFoto.src = recepty[index].img;
     
+    let receptKategorie = document.getElementById('recept-kategorie');
+    receptKategorie.innerHTML = recepty[index].kategorie;
 
-    // detail.style.display = 'block';
+    let receptHodnoceni = document.getElementById('recept-hodnoceni');
+    receptHodnoceni.innerHTML = recepty[index].hodnoceni;
 
-    // let index = this.dataset.index;
-    // console.log(index);
+    let receptNazev = document.getElementById('recept-nazev');
+    receptNazev.innerHTML = recepty[index].nadpis;
 
-    // let receptFoto = document.querySelector('.recept-detail-obrazek');
-    // let foto = document.createElement('img');
-    // foto.id = 'recept-foto';
-    // foto.src = recepty[index].img;
-    // receptFoto.appendChild(foto);
-
-    // receptFoto.src = recepty[index].img;
-    // let receptKategorie = document.getElementById('recept-kategorie');
-    // let receptHodnoceni = document.getElementById('recept-hodnoceni');
-    // let receptNazev = document.getElementById('recept-nazev');
-    // let receptPopis = document.getElementById('recept-popis');
+    let receptPopis = document.getElementById('recept-popis');
+    receptPopis.innerHTML = recepty[index].popis;
 
 };
-
-function priradIndex() {
-    let index = 0;
-    let poleElem = document.querySelectorAll('div.recept');
-
-    poleElem.forEach(function(divRecpt) {
-        divRecpt.dataset.index = index++;
-    }); 
-
-}
-
-
-
-
-// function najdiIndex {
-
-// };
 
 
 // hledání receptu -----------------------------
