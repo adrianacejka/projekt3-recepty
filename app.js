@@ -10,10 +10,10 @@ HTML vzor, jak vygenerovaný recept vypadá, je zakomentovaný v index.html.
 Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
 by se měl seznam receptů vyfiltrovat podle hledaného slova.
 
-3) ??? - použiju pole.filter()? 
+3) DONE - použiju pole.filter()? 
 Doplň filtrovanání receptů podle kategorie.
 
-4) ??? - použít pole.sort()?
+4) DONE - použít pole.sort()?
 Doplň řazení receptů podle hodnocení.
 
 5) DONE - Skrz index
@@ -21,7 +21,7 @@ Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví de
 Doplň patričné údaje receptu do HTML prvků s ID recept-foto, recept-kategorie,
 recept-hodnoceni, recept-nazev, recept-popis.
 
-6) asi ok
+6) 
 Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
 */
 
@@ -113,7 +113,7 @@ function najdiRecept() {
     let hodnota = searchInput.value.toLowerCase();
     console.log(hodnota);
 
-    let nalezene = recepty.filter(recept => recept.nadpis.toLowerCase().includes(hodnota)); // pole nalezených
+    let nalezene = recepty.filter(recept => recept.nadpis.toLowerCase().includes(hodnota));
     console.log(nalezene);
     
     vymazSeznam();
@@ -134,7 +134,7 @@ function vymazSeznam() {
 
 // filtrování pole receptů podle kategorie --------------------
 
-let kat = document.getElementById('kategorie'); // vvybere el.
+let kat = document.getElementById('kategorie');
 
 kat.addEventListener('change', function() {
     
@@ -152,17 +152,63 @@ kat.addEventListener('change', function() {
     vybraneKat.forEach((vybranyRecept) => {
         console.log(vybranyRecept.nadpis);
         vytvorPolozkuRecept(vybranyRecept);
-    });
-    
-        
+    });  
 });
 
 
 
 
-// ----------------------------------------------
+// funkce na inputu seradit od ----------------------------------------------
 
-// function seradOdNejmin() {
+let seraditInput = document.getElementById('razeni');
 
-// }
+seraditInput.addEventListener('change', function() {
+
+    let index = this.selectedIndex;
+    console.log(index);
+
+    if (index === 1) {
+        console.log('od nejlepších');
+        recepty.sort(function(a, b) {
+            return b.hodnoceni - a.hodnoceni;
+        });
+        console.log(recepty);
+        vymazSeznam();
+
+        recepty.forEach((recept) => {
+            console.log(recept.nadpis);
+            vytvorPolozkuRecept(recept);
+        }); 
+
+    } else if (index === 2) {
+        console.log('od nejhorších');
+        recepty.sort(function(a, b) {
+            return a.hodnoceni - b.hodnoceni;
+        });
+
+        console.log(recepty);
+        vymazSeznam();
+
+        recepty.forEach((recept) => {
+            console.log(recept.nadpis);
+            vytvorPolozkuRecept(recept);
+        }); 
+        
+    } else {
+        console.log('všechny');
+        
+        console.log(recepty);
+        vymazSeznam();
+
+        recepty.forEach((recept) => {
+            console.log(recept.nadpis);
+            vytvorPolozkuRecept(recept);
+        }); 
+        
+    };
+
+})
+
+
+
 
