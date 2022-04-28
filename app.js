@@ -63,10 +63,7 @@ function vytvorPolozkuRecept(el) {
     polozkaRecept.appendChild(receptObrazek);
     polozkaRecept.appendChild(receptNazev);
     seznam.appendChild(polozkaRecept);
-
-    
 }
-
 
 // funkce při kliknutí na položku receptu v seznamu -----------
 
@@ -94,9 +91,7 @@ function priKliknuti() {
 
     let receptPopis = document.getElementById('recept-popis');
     receptPopis.innerHTML = recepty[index].popis;
-
 };
-
 
 // hledání receptu -----------------------------
 
@@ -110,8 +105,6 @@ searchInput.onkeydown = function(e) {
       najdiRecept();
     };
 };
-
-
 
 // funkce pripnuta na tlacitku "Hledat" -----------------
 
@@ -129,7 +122,6 @@ function najdiRecept() {
         console.log(nalezenyRecept.nadpis);
         vytvorPolozkuRecept(nalezenyRecept);
     });
-
 };
 
 
@@ -140,14 +132,27 @@ function vymazSeznam() {
     }); 
 };
 
+// filtrování pole receptů podle kategorie --------------------
+
+let kategorie = document.getElementById('kategorie'); // vvybere el.
+
+kategorie.addEventListener('change', function() {
+    console.log('vybrana kategorie');
+    console.log(this.selectedIndex);
+});
 
 
 
-// ----------------------------------------------
+// function vyberTextKat() {
 
-// function seradOdNejvic() {
-
+//     let kategorieHodnota = kategorie.options[2].text; // vybere text v option
 // }
+
+
+// console.log(kategorieHodnota);
+
+
+
 
 // ----------------------------------------------
 
