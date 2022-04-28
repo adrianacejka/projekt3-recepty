@@ -113,7 +113,7 @@ function najdiRecept() {
     let hodnota = searchInput.value.toLowerCase();
     console.log(hodnota);
 
-    let nalezene = recepty.filter(recept => recept.nadpis.toLowerCase().includes(hodnota)) // pole nalezených
+    let nalezene = recepty.filter(recept => recept.nadpis.toLowerCase().includes(hodnota)); // pole nalezených
     console.log(nalezene);
     
     vymazSeznam();
@@ -134,25 +134,20 @@ function vymazSeznam() {
 
 // filtrování pole receptů podle kategorie --------------------
 
-let kategorie = document.getElementById('kategorie'); // vvybere el.
+let kat = document.getElementById('kategorie'); // vvybere el.
 
-kategorie.addEventListener('change', function() {
+kat.addEventListener('change', function() {
     
-    console.log(this.selectedIndex);
+    let index = this.selectedIndex;
+    console.log(index);
 
-    let kategorieHodnota = kategorie.options[this.selectedIndex].text;
+    let kategorieHodnota = kat.options[index].text.toLowerCase();
     console.log(kategorieHodnota);
+
+    let vybraneKat = recepty.filter(recept => recept.kategorie.toLowerCase().includes(kategorieHodnota));
+    console.log(vybraneKat);
+        
 });
-
-
-
-// function vyberTextKat() {
-
-//     let kategorieHodnota = kategorie.options[2].text; // vybere text v option
-// }
-
-
-// console.log(kategorieHodnota);
 
 
 
