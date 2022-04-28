@@ -137,8 +137,11 @@ function vymazSeznam() {
 let kategorie = document.getElementById('kategorie'); // vvybere el.
 
 kategorie.addEventListener('change', function() {
-    console.log('vybrana kategorie');
+    
     console.log(this.selectedIndex);
+
+    let kategorieHodnota = kategorie.options[this.selectedIndex].text;
+    console.log(kategorieHodnota);
 });
 
 
