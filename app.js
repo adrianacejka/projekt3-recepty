@@ -146,6 +146,14 @@ kat.addEventListener('change', function() {
 
     let vybraneKat = recepty.filter(recept => recept.kategorie.toLowerCase().includes(kategorieHodnota));
     console.log(vybraneKat);
+
+    vymazSeznam();
+
+    vybraneKat.forEach((vybranyRecept) => {
+        console.log(vybranyRecept.nadpis);
+        vytvorPolozkuRecept(vybranyRecept);
+    });
+    
         
 });
 
