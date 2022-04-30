@@ -31,6 +31,12 @@ logo.onclick = vygenerujSeznam;
 let detail = document.querySelector('.recept-detail');
 detail.style.display = 'none';
 
+let posledniReceptStorage = localStorage.getItem('posledniRecept')
+// if(posledniReceptStorage !== null) {
+//     vypisDetail(posledniReceptStorage);
+// };
+
+// vypisDetail(posledniReceptStorage);
 vygenerujSeznam();
 
 function vygenerujSeznam() {  
@@ -46,7 +52,7 @@ function vytvorPolozkuRecept(el) {
     polozkaRecept.className = 'recept';
 
     // dopsat funkci po kliknutí na polozku rceptu v seznamu
-    polozkaRecept.addEventListener('click', priKliknuti);
+    polozkaRecept.addEventListener('click', vypisDetail);
 
     let receptObrazek = document.createElement('div');
     receptObrazek.className = 'recept-obrazek';
@@ -67,31 +73,34 @@ function vytvorPolozkuRecept(el) {
 
 // funkce při kliknutí na položku receptu v seznamu -----------
 
-function priKliknuti() {
 
+
+function vypisDetail(num) {
+    
     let hodnota = this.innerText;
     console.log(hodnota);
-
     let index = recepty.findIndex(recept => recept.nadpis === hodnota);
     console.log(index);
+    
+    let receptFoto = document.getElementById('recept-foto');
+    let receptKategorie = document.getElementById('recept-kategorie');
+    let receptHodnoceni = document.getElementById('recept-hodnoceni');
+    let receptNazev = document.getElementById('recept-nazev');
+    let receptPopis = document.getElementById('recept-popis');
 
     detail.style.display = 'block';
-
-    let receptFoto = document.getElementById('recept-foto');
     receptFoto.src = recepty[index].img;
-    
-    let receptKategorie = document.getElementById('recept-kategorie');
     receptKategorie.innerHTML = recepty[index].kategorie;
-
-    let receptHodnoceni = document.getElementById('recept-hodnoceni');
     receptHodnoceni.innerHTML = recepty[index].hodnoceni;
-
-    let receptNazev = document.getElementById('recept-nazev');
     receptNazev.innerHTML = recepty[index].nadpis;
-
-    let receptPopis = document.getElementById('recept-popis');
     receptPopis.innerHTML = recepty[index].popis;
+
+    let posledniRecept = recepty[index];
+ 
+    localStorage.setItem('posledniRecept', index);
+
 };
+
 
 // hledání receptu -----------------------------
 
@@ -106,7 +115,7 @@ searchInput.onkeydown = function(e) {
     };
 };
 
-// funkce pripnuta na tlacitku "Hledat" -----------------
+// funkce pripnuta na tlacitku "Hledat" a input pro hledani --------------
 
 function najdiRecept() {  
 
@@ -116,7 +125,8 @@ function najdiRecept() {
     let nalezene = recepty.filter(recept => recept.nadpis.toLowerCase().includes(hodnota));
     console.log(nalezene);
     
-    vymazSeznam();
+    // vymazSeznam();
+    seznam.innerHTML = '';
 
     nalezene.forEach((nalezenyRecept) => {
         console.log(nalezenyRecept.nadpis);
@@ -124,13 +134,10 @@ function najdiRecept() {
     });
 };
 
-
 function vymazSeznam() {
-    let polozkyRecept = document.querySelectorAll('.recept');
-    polozkyRecept.forEach(function(polozkaRecept) {
-        seznam.removeChild(polozkaRecept);
-    }); 
+    seznam.innerHTML = '';
 };
+
 
 // filtrování pole receptů podle kategorie --------------------
 
@@ -154,8 +161,6 @@ kat.addEventListener('change', function() {
         vytvorPolozkuRecept(vybranyRecept);
     });  
 });
-
-
 
 
 // funkce na inputu seradit od ----------------------------------------------
@@ -207,7 +212,9 @@ seraditInput.addEventListener('change', function() {
         
     };
 
-})
+});
+
+
 
 
 
