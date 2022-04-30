@@ -1,4 +1,4 @@
-const recepty = [
+const jidla = [
   { nadpis: 'Ovocný tvarohový dort',
     popis: 'Poslední roky u mě v létě vedl pusinkový dort Pavlova na mnoho a mnoho způsobů, ale letos mám nového favorita. Už jsem zkoušela mnoho verzí a je vždy výborný, lehký i svěží a tak ideální ne jen na léto.',
     hodnoceni: 4.4,

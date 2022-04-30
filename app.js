@@ -1,3 +1,4 @@
+let recepty = jidla;
 let seznam = document.getElementById('recepty');
 let logo = document.querySelector('.logo');
 logo.onclick = vygenerujSeznam;
