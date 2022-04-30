@@ -1,30 +1,3 @@
-/*
-termin odevzdani nedele 12:00 !
-
-Co je za úkol v tomto projektu:
-
-1) DONE -Do prvku s id="recepty" vygeneruj z dat seznam všech receptů z naší "databáze".
-HTML vzor, jak vygenerovaný recept vypadá, je zakomentovaný v index.html.
-
-2) DONE - jak vyrobit, aby bylo vyhledáno pokud obsahuje pouze část názvu
-Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
-by se měl seznam receptů vyfiltrovat podle hledaného slova.
-
-3) DONE - použiju pole.filter()? 
-Doplň filtrovanání receptů podle kategorie.
-
-4) DONE - použít pole.sort()?
-Doplň řazení receptů podle hodnocení.
-
-5) DONE - Skrz index
-Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
-Doplň patričné údaje receptu do HTML prvků s ID recept-foto, recept-kategorie,
-recept-hodnoceni, recept-nazev, recept-popis.
-
-6) 
-Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
-*/
-
 let seznam = document.getElementById('recepty');
 let logo = document.querySelector('.logo');
 logo.onclick = vygenerujSeznam;
@@ -32,11 +5,8 @@ let detail = document.querySelector('.recept-detail');
 detail.style.display = 'none';
 
 let posledniReceptStorage = localStorage.getItem('posledniRecept')
-// if(posledniReceptStorage !== null) {
-//     vypisDetail(posledniReceptStorage);
-// };
+vypisDetail(posledniReceptStorage);
 
-// vypisDetail(posledniReceptStorage);
 vygenerujSeznam();
 
 function vygenerujSeznam() {  
@@ -52,7 +22,7 @@ function vytvorPolozkuRecept(el) {
     polozkaRecept.className = 'recept';
 
     // dopsat funkci po kliknutí na polozku rceptu v seznamu
-    polozkaRecept.addEventListener('click', vypisDetail);
+    polozkaRecept.addEventListener('click', ziskejIndexReceptu);
 
     let receptObrazek = document.createElement('div');
     receptObrazek.className = 'recept-obrazek';
@@ -73,14 +43,17 @@ function vytvorPolozkuRecept(el) {
 
 // funkce při kliknutí na položku receptu v seznamu -----------
 
-
-
-function vypisDetail(num) {
-    
+function ziskejIndexReceptu() {
     let hodnota = this.innerText;
     console.log(hodnota);
     let index = recepty.findIndex(recept => recept.nadpis === hodnota);
     console.log(index);
+
+    vypisDetail(index);
+};
+
+
+function vypisDetail(index) {
     
     let receptFoto = document.getElementById('recept-foto');
     let receptKategorie = document.getElementById('recept-kategorie');
@@ -125,8 +98,7 @@ function najdiRecept() {
     let nalezene = recepty.filter(recept => recept.nadpis.toLowerCase().includes(hodnota));
     console.log(nalezene);
     
-    // vymazSeznam();
-    seznam.innerHTML = '';
+    vymazSeznam();
 
     nalezene.forEach((nalezenyRecept) => {
         console.log(nalezenyRecept.nadpis);
@@ -162,7 +134,6 @@ kat.addEventListener('change', function() {
     });  
 });
 
-
 // funkce na inputu seradit od ----------------------------------------------
 
 let seraditInput = document.getElementById('razeni');
@@ -172,44 +143,31 @@ seraditInput.addEventListener('change', function() {
     let index = this.selectedIndex;
     console.log(index);
 
-    if (index === 1) {
-        console.log('od nejlepších');
+    if (index === 1) {   
         recepty.sort(function(a, b) {
             return b.hodnoceni - a.hodnoceni;
         });
         console.log(recepty);
         vymazSeznam();
-
-        recepty.forEach((recept) => {
-            console.log(recept.nadpis);
+        recepty.forEach((recept) => {      
             vytvorPolozkuRecept(recept);
         }); 
 
     } else if (index === 2) {
-        console.log('od nejhorších');
         recepty.sort(function(a, b) {
             return a.hodnoceni - b.hodnoceni;
         });
-
-        console.log(recepty);
         vymazSeznam();
-
         recepty.forEach((recept) => {
-            console.log(recept.nadpis);
             vytvorPolozkuRecept(recept);
         }); 
         
     } else {
-        console.log('všechny');
-        
         console.log(recepty);
         vymazSeznam();
-
-        recepty.forEach((recept) => {
-            console.log(recept.nadpis);
+        recepty.forEach((recept) => {  
             vytvorPolozkuRecept(recept);
         }); 
-        
     };
 
 });
