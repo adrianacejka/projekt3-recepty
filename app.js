@@ -5,8 +5,11 @@ logo.onclick = vygenerujSeznam;
 let detail = document.querySelector('.recept-detail');
 detail.style.display = 'none';
 
-let posledniReceptStorage = localStorage.getItem('posledniRecept')
-vypisDetail(posledniReceptStorage);
+let posledniReceptStorage = localStorage.getItem('posledniRecept');
+
+if (posledniReceptStorage !== null) {
+    vypisDetail(posledniReceptStorage);
+};
 
 vygenerujSeznam();
 
